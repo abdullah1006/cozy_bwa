@@ -3,6 +3,8 @@ import 'package:cozy/widgets/space_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../theme.dart';
+
 class FavoritPage extends StatefulWidget {
   FavoritPage({Key? key}) : super(key: key);
 
@@ -19,29 +21,42 @@ class _FavoritPageState extends State<FavoritPage> {
     int index = 0;
     return SafeArea(
       child: Scaffold(
-          body: Column(
-        children: [
-          Center(
-            child: Text('Favorite Page'),
-          ),
-          SingleChildScrollView(
-            child: (data.isEmpty)
-                ? Center(
-                    child: Text('Belum ada yang ditambahkan'),
-                  )
-                : Column(
-                    children: data.map((item) {
-                      index++;
-                      return Container(
-                        margin: EdgeInsets.only(
-                          top: index == 1 ? 0 : 30,
-                        ),
-                        child: SpaceCard(item),
-                      );
-                    }).toList(),
-                  ),
-          )
-        ],
+          body: Padding(
+        padding: const EdgeInsets.only(
+          left: 24,
+          top: 24,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Favorite Space',
+              style: blackTextStyle.copyWith(
+                fontSize: 24,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            SingleChildScrollView(
+              child: (data.isEmpty)
+                  ? Center(
+                      child: Text('Belum ada yang ditambahkan'),
+                    )
+                  : Column(
+                      children: data.map((item) {
+                        index++;
+                        return Container(
+                          margin: EdgeInsets.only(
+                            top: index == 1 ? 0 : 30,
+                          ),
+                          child: SpaceCard(item),
+                        );
+                      }).toList(),
+                    ),
+            )
+          ],
+        ),
       )),
     );
   }

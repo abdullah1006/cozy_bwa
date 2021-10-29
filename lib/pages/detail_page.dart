@@ -1,3 +1,6 @@
+import 'package:cozy/providers/space_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../models/space.dart';
 import '../theme.dart';
 import '../widgets/facilitiy_item.dart';
@@ -303,17 +306,17 @@ class _DetailPageState extends State<DetailPage> {
                       height: 40,
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        widget.space.isFavorite = !widget.space.isFavorite;
-                      });
-                    },
-                    child: Image.asset(
-                      widget.space.isFavorite
-                          ? 'assets/icon/btn_wishlist_select.png'
-                          : 'assets/icon/btn_wishlist.png',
-                      height: 40,
+                  Consumer<SpaceProvider>(
+                    builder: (context, provider, child) => InkWell(
+                      onTap: () {
+                        provider.setFavorite(widget.space);
+                      },
+                      child: Image.asset(
+                        widget.space.isFavorite
+                            ? 'assets/icon/btn_wishlist_select.png'
+                            : 'assets/icon/btn_wishlist.png',
+                        height: 40,
+                      ),
                     ),
                   ),
                 ],

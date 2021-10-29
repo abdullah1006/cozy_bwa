@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 class SpaceCard extends StatelessWidget {
   final Space space;
 
-  const SpaceCard(this.space);
+  const SpaceCard(
+    this.space,
+  );
 
   @override
   Widget build(BuildContext context) {

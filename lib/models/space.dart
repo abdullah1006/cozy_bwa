@@ -21,7 +21,7 @@ class Space {
   int? numberOfKitchens;
   int? numberOfBedrooms;
   int? numberOfCupboards;
-  bool isFavorite = false;
+  bool isFavorite;
 
   Space({
     this.id,
@@ -38,6 +38,7 @@ class Space {
     this.numberOfKitchens,
     this.phone,
     this.photos,
+    this.isFavorite = false,
   });
 
   factory Space.fromJson(Map<String, dynamic> json) {

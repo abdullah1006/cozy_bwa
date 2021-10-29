@@ -19,15 +19,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    var spaceProvider = Provider.of<SpaceProvider>(context, listen: false);
-    spaceProvider.getSpaceList();
   }
-
-  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    var spaceProvider = Provider.of<SpaceProvider>(context);
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -95,29 +90,26 @@ class _HomePageState extends State<HomePage> {
                     height: 16,
                   ),
                   //NOTE : Recommended Space
-                  Builder(
-                    builder: (context) {
+                  Consumer<SpaceProvider>(
+                    builder: (context, spaceProvider, child) {
+                      spaceProvider.getSpaceList();
                       final data = spaceProvider.spaceList;
                       int index = 0;
                       return (spaceProvider.onLoadData)
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
-                          : (data.isEmpty)
-                              ? Center(
-                                  child: Text(spaceProvider.message),
-                                )
-                              : Column(
-                                  children: data.map((item) {
-                                    index++;
-                                    return Container(
-                                      margin: EdgeInsets.only(
-                                        top: index == 1 ? 0 : 30,
-                                      ),
-                                      child: SpaceCard(item),
-                                    );
-                                  }).toList(),
+                          : Column(
+                              children: data.map((item) {
+                                index++;
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                    top: index == 1 ? 0 : 30,
+                                  ),
+                                  child: SpaceCard(item),
                                 );
+                              }).toList(),
+                            );
                     },
                   ),
                   SizedBox(

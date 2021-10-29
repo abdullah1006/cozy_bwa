@@ -12,18 +12,23 @@ class SpaceProvider extends ChangeNotifier {
   List<Space> _spaceList = [];
   List<Space> get spaceList => _spaceList;
   void getSpaceList() async {
-    final _item = await ApiClient.getRecommendedSpaces();
-    _spaceList.addAll(_item);
-    if (_spaceList.isEmpty) {
-      _message = 'Error Saat Mendapatkan Data';
+    if (_onLoadData) {
+      _spaceList = await ApiClient.getRecommendedSpaces();
+      if (_spaceList.isEmpty) {
+        _message = 'Error Saat Mendapatkan Data';
+      }
+      _onLoadData = false;
+      notifyListeners();
     }
-    _onLoadData = false;
-    notifyListeners();
   }
 
   void init() {
-    _onLoadData = false;
     _message = "";
     _spaceList = [];
+  }
+
+  void setFavorite(Space space) {
+    space.isFavorite = !space.isFavorite;
+    notifyListeners();
   }
 }
