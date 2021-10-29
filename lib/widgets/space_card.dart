@@ -39,6 +39,9 @@ class SpaceCard extends StatelessWidget {
                     height: 110,
                     fit: BoxFit.cover,
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Align(
                     alignment: Alignment.topRight,
                     child: Container(
