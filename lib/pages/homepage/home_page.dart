@@ -1,10 +1,10 @@
-import '../models/tips.dart';
-import '../providers/space_provider.dart';
-import '../theme.dart';
-import '../view/popular_cities.dart';
+import '../../models/tips.dart';
+import '../../providers/space_provider.dart';
+import '../../theme.dart';
+import '../../view/popular_cities.dart';
 
-import '../widgets/space_card.dart';
-import '../widgets/tips_card.dart';
+import '../../widgets/space_card.dart';
+import '../../widgets/tips_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
